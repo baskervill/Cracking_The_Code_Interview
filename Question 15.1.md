@@ -1,0 +1,22 @@
+## 题目
+
+原文：
+
+Write a method to find the number of employees in each department.
+
+译文：
+
+写一条SQL语句找到每一个部门中员工的数量。
+
+## 解答
+
+这个问题可以先将部门表和员工表做连接，然后再统计每个部门中的员工数量。 这里使用左连接，因为对于0个员工的部门，我们也要包含进来。
+
+```sql
+select Dept_Name, Departments.Dept_ID, count(*) as 'num_employees'
+from Departments
+left join Employees
+on Employees.Dept_ID = Departments.Dept_ID
+group by Departments.Dept_ID, Dept_Name
+```
+
